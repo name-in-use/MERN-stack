@@ -7,7 +7,7 @@ const asyncHandler = require('express-async-handler')
 // @access Private
 const getAllNotes = asyncHandler(async(req,res)=>{
     // Get all notes from mongo
-    const notes = await Note.find().select().lean()
+    const notes = await Note.find().lean()
 
     //If not notes
     if (!notes?.length){
