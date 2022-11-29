@@ -14,6 +14,11 @@ const PORT = process.env.PORT || 3500
 //Database connection
 connectDB()
 
+app.use(logger)
+app.use(cors(corsOptions))
+app.use(express.json())
+app.use(cookieParser())
+
 //PATHS - ROOTS
 app.use('/', express.static(path.join(__dirname, 'public')))
 app.use('/', require('./routes/root'))
@@ -23,14 +28,6 @@ app.use('/notes',require('./routes/noteRoutes'))
 
 //get variables from .env file
 //console.log(process.env.NODE_ENV)
-
-
-app.use(logger)
-app.use(cors(corsOptions))
-app.use(express.json())
-app.use(cookieParser())
-  
-
 
 app.all('*', (req, res) => {
     res.status(404)
